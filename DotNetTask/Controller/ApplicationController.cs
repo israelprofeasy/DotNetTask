@@ -21,24 +21,24 @@ public class ApplicationController : ControllerBase
         return Ok(res);
     }
     
-    [HttpGet("GetApplication")]
+    [HttpGet("GetApplication/{programId}/{applicationId}")]
     public async Task<IActionResult> GetApplication(string applicationId, string programId)
     {
         var res = await _applicationService.GetApplicationByIdAsync(applicationId, programId);
         return Ok(res);
     }
     
-    [HttpGet("GetProgramApplication")]
+    [HttpGet("GetProgramApplication/{programId}")]
     public async Task<IActionResult> GetProgramApplication(string programId)
     {
         var res = await _applicationService.GetAllApplicationsByProgram(programId);
         return Ok(res);
     }
     
-    [HttpDelete("DeleteProgram")]
+    [HttpDelete("DeleteProgram/{applicationId}")]
     public async Task<IActionResult> DeleteProgram(string applicationId, string programId)
     {
-        await _applicationService.DeleteApplicationAsync(applicationId,programId);
-        return Ok();
+        var res = await _applicationService.DeleteApplicationAsync(applicationId,programId);
+        return Ok(res);
     }
 }

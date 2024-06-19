@@ -5,5 +5,5 @@ namespace DotNetTask.Data.Models;
 public class NumericAnswer : Numeric
 {
     [JsonProperty(PropertyName="answer")]
-    public string Answer { get; set; }
+    public int Answer { get; set; }
 }

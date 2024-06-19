@@ -86,6 +86,16 @@ public class ApplicationService : IApplicationService
     
     private void Validation(ApplicationDTO model)
     {
+        var error = new List<string>();
+        if (model.AdditionalQuestions.MultiChoices.Any())
+        {
+            foreach (var item in model.AdditionalQuestions.MultiChoices)
+            {
+                if (item.Answer.Count > item.MaxChoice)
+                    error.Add("Maximum number of choice exceeded");
+            
+            } 
+        }
         
     }
 }

@@ -25,7 +25,7 @@ public class ProgramFormController : ControllerBase
         var res = await _programService.GetAllProgramAsync();
         return Ok(res);
     }
-    [HttpGet("GetProgram")]
+    [HttpGet("GetProgram/{programId}")]
     public async Task<IActionResult> GetProgram(string programId)
     {
         var res = await _programService.GetProgramByIdAsync(programId);
@@ -37,7 +37,7 @@ public class ProgramFormController : ControllerBase
         var res = await _programService.UpdateProgramAsync(model);
         return Ok(res);
     }
-    [HttpDelete("DeleteProgram")]
+    [HttpDelete("DeleteProgram/{programId}")]
     public async Task<IActionResult> DeleteProgram(string programId)
     {
         await _programService.DeleteProgramAsync(programId);

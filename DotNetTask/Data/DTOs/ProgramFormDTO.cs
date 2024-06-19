@@ -6,10 +6,11 @@ namespace DotNetTask.Data.DTOs;
 
 public class ProgramFormDTO
 {
-    [Required]
+    [Required(ErrorMessage = "Program title is required")]
     [JsonProperty(PropertyName="programTitle")]
     public string ProgramTitle { get; set; }
-    [Required]
+    
+    [Required(ErrorMessage = "Program description is required")]
     [JsonProperty(PropertyName="programDescription")]
     public string ProgramDescription { get; set; }
     
