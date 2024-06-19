@@ -25,7 +25,6 @@ public class ProgramService: IProgramService
 
     public async Task<ResponseDTO<ProgramForm>> CreateProgramAsync(ProgramFormDTO model)
     {
-        Validation(model);
         var application = new ProgramForm()
         {
             Id = Guid.NewGuid().ToString(),
@@ -64,6 +63,9 @@ public class ProgramService: IProgramService
 
     public async Task<ResponseDTO<ProgramForm>> UpdateProgramAsync(ProgramForm model)
     {
+        if(model == null)
+            return new ResponseDTO<ProgramForm>
+                { StatusCode = StatusCodes.Status400BadRequest, Message = "Invalid request" };
         var checkIfExist = await _programRepository.GetProgramByIdAsync(model.Id);
         if (checkIfExist == null)
             return new ResponseDTO<ProgramForm>
@@ -71,10 +73,5 @@ public class ProgramService: IProgramService
         await _programRepository.UpdateProgramAsync(model);
         return new ResponseDTO<ProgramForm>
             { StatusCode = StatusCodes.Status204NoContent, Message = "Program updated successfully" };
-    }
-
-    private void Validation(ProgramFormDTO model)
-    {
-        
     }
 }

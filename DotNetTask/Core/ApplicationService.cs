@@ -75,6 +75,9 @@ public class ApplicationService : IApplicationService
 
     public async Task<ResponseDTO<Application>> UpdateApplicationAsync(Application model)
     {
+        if(model == null)
+            return new ResponseDTO<Application>
+                { StatusCode = StatusCodes.Status400BadRequest, Message = "Invalid request" };
         var checkIfExist = await _applicationRepository.GetApplicationByIdAsync(model.Id,model.ProgramId);
         if (checkIfExist == null)
             return new ResponseDTO<Application>
