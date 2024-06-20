@@ -1,6 +1,6 @@
 # Program Design and Flow
 
-Program design is a .net web application.
+Program design is a .net 8 web API application.
 
 DTOs (Data transfer object) where created to interface with client application, which will then be mapped to the models created to fit into the database structure
 
